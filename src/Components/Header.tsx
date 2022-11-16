@@ -1,5 +1,17 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
+import { AppContext } from '../context/ContextProvider'
 
 export const Header = () => {
-  return <div>Header</div>
+  const { caffeeCart } = React.useContext(AppContext)
+  return (
+    <header>
+      <nav>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/checkout">
+          Carrinho <span>{caffeeCart.length}</span>
+        </NavLink>
+      </nav>
+    </header>
+  )
 }
