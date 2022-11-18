@@ -1,6 +1,6 @@
 import React, { createContext, ReactNode } from 'react'
 import { CaffeType } from '../@types/CaffeeType'
-import { caffeeReducer } from '../reduces/checkout/reducer'
+import { caffeeReducer } from '../reduces/reducer'
 
 interface AppContextType {
   caffeeCart: CaffeType[]

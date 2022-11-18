@@ -1,7 +1,7 @@
 import React from 'react'
 import { CaffeType } from '../../../../@types/CaffeeType'
 import { AppContext } from '../../../../context/ContextProvider'
-import { addCaffeeCart } from '../../../../reduces/checkout/actions'
+import { addCaffeeCart } from '../../../../reduces/actions'
 
 interface CaffeeItemProps {
   caffee: CaffeType
@@ -20,7 +20,6 @@ export const CaffeeItem = ({ caffee }: CaffeeItemProps) => {
       total: (quantity + 1) * caffeeState.price,
     }
     setCaffeeState(caffee)
-    console.log(caffee)
   }
 
   function handleMinosQuantity() {

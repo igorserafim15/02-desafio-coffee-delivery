@@ -5,12 +5,16 @@ import { CaffeeCartItem } from './Components/CaffeeCartItem'
 export const Checkout = () => {
   const { caffeeCart } = useContext(AppContext)
 
-  const subtotal = 50
-  // caffeeCart
-  //   .map((item) => item.total)
-  //   .reduce((acc, item) => acc + item)
   const delivery = 3.5
-  const total = subtotal + delivery
+
+  function valueTotal() {
+    if (caffeeCart.length === 0) return 0
+    const subtotal = caffeeCart
+      .map((item) => item.total)
+      .reduce((acc, item) => acc + item)
+    return subtotal + delivery
+  }
+  const total = valueTotal()
 
   return (
     <div>
