@@ -37,11 +37,11 @@ html {
   }
 }
 
-body * {
+body, button, input {
   font-weight: 400;
   font-size: 1.7rem;
-  line-height: 1.5;
-  color: #26256c;
+  line-height: 1.4;
+  color: ${(props) => props.theme['gray-700']};
   /* font-family: 'Baloo 2', cursive; */
   font-family: 'Roboto', sans-serif;  
 }
@@ -54,23 +54,7 @@ h5,
 h6 {
   font-weight: 700;
   line-height: 1.1;
-  color: #9050ef;
-}
-
-h1 {
-  font-size: 6.4rem;
-}
-
-h2 {
-  font-size: 4.2rem;
-}
-
-h3 {
-  font-size: 3.6rem;
-}
-
-h4 {
-  font-size: 2.4rem;
+  color: ${(props) => props.theme['gray-800']};
 }
 
 *,
@@ -114,32 +98,32 @@ label {
 }
 
 :focus-visible {
-  outline-color: #26256c;
+  outline-color: ${(props) => props.theme['yellow-500']};
 }
 
 ::-moz-selection {
-  background-color: #26256c;
+  background-color: ${(props) => props.theme['yellow-500']};
 }
 
 ::selection {
-  background-color: #26256c;
+  background-color: ${(props) => props.theme['yellow-500']};
 }
 
 ::marker {
-  color: #26256c;
+  color: ${(props) => props.theme['yellow-500']};
 }
 
 ::-webkit-calendar-picker-indicator {
-  color: #26256c;
+  color: ${(props) => props.theme['yellow-500']};
 }
 
 ::-webkit-clear-button {
-  color: #26256c;
+  color: ${(props) => props.theme['yellow-500']};
 }
 
 ::-webkit-inner-spin-button,
 ::-webkit-outer-spin-button {
-  color: #26256c;
+  color: ${(props) => props.theme['yellow-500']};
 }
 
 .sr-only {
