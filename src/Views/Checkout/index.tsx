@@ -1,43 +1,41 @@
-import { useContext } from 'react'
-import { AppContext } from '../../context/ContextProvider'
-import { priceFormatter } from '../../utils/formatter'
-import { CaffeeCartItem } from './Components/CaffeeCartItem'
-import { AddressUI, GridUI, SelectedUI } from './styles'
+import { FormAddress } from './Components/Address/FormAddress'
+import { FormPayment } from './Components/Payment/FormPayment'
+import { FormUI, GridUI } from './styles'
+import { useForm } from 'react-hook-form'
+import { FormSelected } from './Components/Selected/FormSelected'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as z from 'zod'
+
+const schema = z.object({
+  cep: z.string().min(8, 'Informe um CEP válido'),
+  street: z.string(),
+  number: z.string(),
+  complement: z.string(),
+  district: z.string(),
+  city: z.string(),
+  uf: z.string(),
+})
+
+type FormAddressData = z.infer<typeof schema>
 
 export const Checkout = () => {
-  const { caffeeCart } = useContext(AppContext)
+  const { register, handleSubmit, formState } = useForm<FormAddressData>({
+    resolver: zodResolver(schema),
+  })
 
-  const delivery = 3.5
+  console.log(formState.errors)
 
-  function total() {
-    const subtotal = caffeeCart.reduce((acc, item) => {
-      return acc + item.total
-    }, 0)
-    return subtotal
+  function handleOrderCaffee(data: FormAddressData) {
+    console.log(data)
   }
 
   return (
-    <GridUI>
-      <AddressUI></AddressUI>
-      <SelectedUI>
-        <ul>
-          {caffeeCart.map((caffee) => (
-            <CaffeeCartItem key={caffee.id} caffee={caffee} />
-          ))}
-        </ul>
-        <div>
-          <p>
-            Total de itens: <span>{priceFormatter(total())}</span>
-          </p>
-          <p>
-            Entrega: <span>{priceFormatter(delivery)}</span>
-          </p>
-          <strong>
-            Total: <span>{priceFormatter(total() + delivery)}</span>
-          </strong>
-          <button>Confirmar pedido</button>
-        </div>
-      </SelectedUI>
+    <GridUI onSubmit={handleSubmit(handleOrderCaffee)}>
+      <FormUI>
+        <FormAddress register={register} />
+        <FormPayment />
+      </FormUI>
+      <FormSelected />
     </GridUI>
   )
 }
